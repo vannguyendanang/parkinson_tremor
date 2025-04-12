@@ -8,7 +8,7 @@ class DataStructureGenerator:
         self.base_path = base_path
         self.clinic_folder = clinic_folder
         self.activity_folder = activity_folder
-        self.all_data = {}
+        # self.all_data = {}
         
 
     def generate_data_structure(self):
@@ -16,11 +16,15 @@ class DataStructureGenerator:
         
         # Load clinical data
         clinical_data = pd.read_csv(clinical_data_path)
-        clinical_data["ID"] = 10
+        
         # Dictionary to store all data
         ret_all_data = {}
 
-        for pid in tqdm(clinical_data["ID"].head(1), desc="Loading participants"):
+        # Filter clinical data for ID = 23
+        filtered_clinical_data = clinical_data[clinical_data["ID"] == 23]
+
+        # for pid in tqdm(clinical_data["ID"].head(1), desc="Loading participants"):
+        for pid in tqdm(filtered_clinical_data["ID"], desc="Loading participants"):
 
             pid_str = f"{pid:03d}"  # Formats as 005, 006 etc.
             # pid_str = pid
